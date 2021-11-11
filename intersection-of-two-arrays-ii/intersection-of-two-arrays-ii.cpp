@@ -1,39 +1,32 @@
 class Solution {
 public:
     vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
-        vector<int> res;
-        unordered_map<int, int> u1;
-        unordered_map<int, int> u2;
-        cout << "u1: "; 
-        for(int i: nums1){
-            if (u1.find(i) != u1.end()) u1[i] += 1;
-            else {
-                u1[i] = 1;
-                cout << i << " ";
-            }
+            vector<int> v;
+    int i=0,j=0;
+    int l1=nums1.size(),l2=nums2.size();
+    
+    sort(nums1.begin(),nums1.end());
+    sort(nums2.begin(),nums2.end());
+    
+    while(i<l1 && j<l2)
+    {
+        if(nums1[i]==nums2[j])
+        {
+            v.push_back(nums1[i]);
+            i++;
+            j++;
         }
-        cout << endl << "u2: ";
-        for(int i: nums2){
-            if (u2.find(i) != u2.end()) u2[i] += 1;
-            else {
-                u2[i] = 1;
-                cout << i << " ";
-            }
+        else if (nums1[i]<nums2[j])
+        {
+            i++;
         }
-        cout << endl << "merge\n";
-        for(auto x: u1) {
-            if (u2.find(x.first) != u2.end()){
-                // if key exists in u2
-                u1[x.first] = min(u1[x.first], u2[x.first]);
-                cout << x.first << " " << u1[x.first] << endl;
-                for (int i = 0; i < u1[x.first]; i++) {
-                    res.push_back(x.first);
-                }
-            }
-            // else {
-            //     u1[x.first] = 0;
-            // }
+        else
+        {
+            j++;
         }
-        return res;
+    }
+    
+    return v;
+    
     }
 };
