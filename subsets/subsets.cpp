@@ -1,6 +1,7 @@
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
+        // Bit Manipulation ka question hai
         int n = nums.size();
         vector<vector<int>> res;
         for (int i = 0; i < (1<<n); i++) {
