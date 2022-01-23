@@ -1,17 +1,19 @@
 class Solution {
 public:
-    void merge(vector<int>& nums, int start, int mid, int end) {
-        int l = start, k = 0, r = mid+1, size = end + 1 - start;
-        vector <int>sorted(size, 0);
-        while (l <= mid && r <= end)
-            sorted[k++] = nums[l] < nums[r] ? nums[l++] : nums[r++];
-        while (l <= mid) sorted[k++] = nums[l++];
-        while (r <= end) sorted[k++] = nums[r++];
-        for (int i = 0; i < size; i++)
-            nums[start+i] = sorted[i];
+    void merge(vector<int>& nums, int start, int mid, int end){
+       int i = start, j = mid+1, k = 0, size = (end-start) + 1;
+        vector<int> sorted(size, 0);
+        while (i <= mid && j <= end)
+            sorted[k++] = nums[i] < nums[j] ? nums[i++] : nums[j++];
+        while (i <= mid)
+            sorted[k++] = nums[i++];
+        while (j <= end)
+            sorted[k++] = nums[j++];
+        for (int s=0; s < size; s++)
+            nums[start+s] = sorted[s];
     }
-    void mergeSort(vector<int>& nums, int start, int end) {
-        if (start >= end) return;
+    void mergeSort(vector<int>& nums, int start, int end){
+        if (end <= start) return;
         int mid = (end - start)/2 + start;
         mergeSort(nums, start, mid);
         mergeSort(nums, mid+1, end);
