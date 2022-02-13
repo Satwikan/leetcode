@@ -4,7 +4,7 @@ public:
     void recursion(vector<vector<int>>& res, vector<int>& nums,vector<int>subset, int i=0){
         if (i == nums.size()) {
             res.push_back(subset);
-            subset.assign({});
+            // subset.assign({});
             return;
         };
         recursion(res, nums, subset, i+1);
