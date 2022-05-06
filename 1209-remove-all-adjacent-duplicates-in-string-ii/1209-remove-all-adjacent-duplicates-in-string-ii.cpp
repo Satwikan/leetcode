@@ -5,7 +5,7 @@ public:
         stack <pair<char, int>> stk;
         for (int i = 0; i < s.size(); i++) {
             if (stk.empty() || stk.top().first != s[i]) {
-                cout << s[i] << " " << i << endl;
+                // cout << s[i] << " " << i << endl;
                 stk.push({s[i], 1});
             }
             else {
@@ -19,13 +19,13 @@ public:
         while (!stk.empty()) {
             auto top = stk.top();
             stk.pop();
-            cout << top.first << " " << top.second << endl;
+            // cout << top.first << " " << top.second << endl;
             while (top.second--) {
                 res.push_back(top.first);
             }
         }
-        cout << res;
-            reverse(res.begin(), res.end());
+        // cout << res;
+        reverse(res.begin(), res.end());
         return res;
     }
 };
