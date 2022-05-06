@@ -24,8 +24,7 @@ public:
                 res.push_back(top.first);
             }
         }
-        
-            cout << res;
+        cout << res;
             reverse(res.begin(), res.end());
         return res;
     }
