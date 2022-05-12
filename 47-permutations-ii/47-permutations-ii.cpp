@@ -1,25 +1,31 @@
 class Solution {
 public:
-    void backtrack(vector<int>& nums, vector<vector<int>>& res, int i) {
-        if (i == nums.size()-1) {
-            if (find(res.begin(), res.end(), nums) == res.end())
-                res.push_back(nums);
+    void backtrack(vector<int> set, vector<vector<int>>& res, int n, unordered_map<int, int>& umap) {
+        if (set.size() == n) {
+            res.push_back(set);
             return;
-            
         }
-        for (int j = i; j < nums.size(); j++) {
-            // int count = 1;
-            swap(nums[i], nums[j]);
-            // int prev = nums[j];
-            // while (nums[++j] == prev) count++;
-            // backtrack(vector<int>& nums, vector<vector<int>>& res, vector<int> set, int i+count)
-            backtrack(nums, res, i+1);
-            swap(nums[i], nums[j]);
+        for (auto ent: umap) {
+            int key = ent.first;
+            int count = ent.second;
+            if (count == 0) continue;
+            set.push_back(key);
+            umap[key] = count-1;
+            backtrack(set, res, n, umap);
+            set.pop_back();
+            umap[key] = count;
         }
     }
     vector<vector<int>> permuteUnique(vector<int>& nums) {
         vector<vector<int>> res;
-        backtrack(nums, res, 0);
+        unordered_map<int, int> umap;
+        for (auto i: nums) {
+            if (umap.find(i) == umap.end()) {
+                umap[i] = 0;
+            }
+            umap[i] += 1;
+        }
+        backtrack({}, res, nums.size(), umap);
         return res;
     }
 };
