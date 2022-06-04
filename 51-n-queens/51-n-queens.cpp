@@ -1,6 +1,6 @@
 class Solution {
 public:
-    bool check(vector<string> board, int i, int j) {
+    bool check(vector<string>& board, int i, int j) {
         int n = board.size();
         for (int k = 0; k < n; k++) {
             if (board[i][k] == 'Q' || board[k][j] == 'Q') return false;
