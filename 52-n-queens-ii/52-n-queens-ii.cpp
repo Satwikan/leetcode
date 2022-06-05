@@ -28,7 +28,7 @@ public:
         }
         return true;
     }
-    void backtrack(int n, int col, vector<string> board, vector<vector<string>>& res) {
+    void backtrack(int n, int col, vector<string>& board, vector<vector<string>>& res) {
         if (col == n) {
             res.push_back(board);
             return;
