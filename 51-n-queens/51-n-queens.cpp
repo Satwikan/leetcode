@@ -1,5 +1,7 @@
 class Solution {
 public:
+    // Time Complexity : O(N!), we have N choices in the first row, N-1 in the second row, N-2 in the next and so on... which brings overall time complexity to O(N!)
+    // Space Complexity : O(N*N). Required for board and recursive stack.
     bool check(vector<string>& board, int i, int j) {
         int n = board.size();
         for (int k = 0; k < n; k++) {
@@ -28,7 +30,7 @@ public:
         }
         return true;
     }
-    void backtrack(int n, int col, vector<string> board, vector<vector<string>>& res) {
+    void backtrack(int n, int col, vector<string>& board, vector<vector<string>>& res) {
         if (col == n) {
             res.push_back(board);
             return;
