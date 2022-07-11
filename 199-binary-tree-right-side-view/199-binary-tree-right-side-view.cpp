@@ -11,6 +11,8 @@
  */
 class Solution {
 public:
+    // Time: O(N) N: number of nodes
+    // Space: O(W) W: width
     vector<int> rightSideView(TreeNode* root) {
         if (root == NULL) return {};
         queue<TreeNode*> q;
