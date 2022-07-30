@@ -1,21 +1,13 @@
 class Solution {
 public:
-   // Time Complexity: O(n^2)
-    // Space: O(n)
+   // Time Complexity: O(n)
+    // Space: O(1)
     bool canJump(vector<int>& nums) {
-        int n = nums.size();
-        bool memo[n+1];
-        memo[1] = true;
-        for (int i = 2; i <= n; i++) {
-            int j = i-1;
-            memo[i] = false; 
-            while (j > 0) {
-                if (memo[j] && nums[j-1] + j >= i) {
-                    memo[i] = true;
-                    break;
-                } j--;
-            }
+        int n = nums.size(), farest = 0;
+        for (int i = 0; i < n; i++) {
+            if (farest < i) return false;
+            farest = max(farest, i+nums[i]);
         }
-        return memo[n];
+        return true;
     }
 };
