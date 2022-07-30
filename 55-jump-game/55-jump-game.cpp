@@ -1,6 +1,7 @@
 class Solution {
 public:
-    
+   // Time Complexity: O(n^2)
+    // Space: O(n)
     bool canJump(vector<int>& nums) {
         int n = nums.size();
         bool memo[n+1];
