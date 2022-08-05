@@ -1,13 +1,19 @@
 class Solution {
 public:
     int combinationSum4(vector<int>& nums, int target) {
-	vector<uint> dp(target + 1); dp[0] = 1;
-	// start filling the dp array from bottom, i.e curTarget = 1 till target.
-	for (int curTarget = 1; curTarget <= target; curTarget++) 
-        for (auto& num : nums)     // check for all elements from nums
-            if (num <= curTarget)  // an element will only be taken if it is less than target to be achieved
-                // the optimal answer(no. of combination) of remaining value is added to dp[curTarget]
-				dp[curTarget] += dp[curTarget - num];   
-    return dp[target];
-}
+        vector<uint> dp(target + 1);
+        dp[0] = 1;
+        for (int j = 1; j < target+1; j++) {
+            // cout << j << ": ";
+            for (auto& num : nums){
+                // if (nums[i] == j) dp[j] += 1;
+                if (num <= j) dp[j] += dp[j-num];
+                
+            }
+            // cout << j << " " << dp[j] << " ";
+            // cout << endl;
+        }
+        // for (int j = 1; j < target+1; j++) cout << dp[j] << " ";
+        return dp[target];
+    }
 };
