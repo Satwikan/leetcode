@@ -1,5 +1,7 @@
 class Solution {
 public:
+    // Time Complexity: O(n)
+    // Space: O(1)
     int maxSubArray(vector<int>& nums) {
         int n = nums.size();
         int sum = nums[0];
