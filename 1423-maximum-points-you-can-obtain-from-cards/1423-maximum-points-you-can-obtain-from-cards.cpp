@@ -1,5 +1,7 @@
 class Solution {
 public:
+    // Time Complexity: O(N)
+    // Space: O(1)
     int maxScore(vector<int>& cp, int k) {
         int n = cp.size();
         vector<int> pre(n, -1);
