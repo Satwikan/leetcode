@@ -1,35 +1,20 @@
 class Solution {
 public:
-    int maxScore(vector<int>& cardPoints, int k) {
-        int sum = 0;
-        int n = cardPoints.size();
-        
-        vector<int> cummulativeSumFromFront(n+1, 0);
-        vector<int> cummulativeSumFromBehind(n+1, 0);
-        
-        sum = 0;
-        for (int i=0; i<n; i++) {
-            sum += cardPoints[i];
-            cummulativeSumFromFront[i+1] = sum;
+    int maxScore(vector<int>& cp, int k) {
+        int n = cp.size();
+        vector<int> pre(n, -1);
+        vector<int> seq(n, -1);
+        pre[0] = cp[0];
+        seq[n-1] = cp[n-1];
+        for (int i = 1; i < n; i++) pre[i] = cp[i] + pre[i-1];
+        for (int i = n-2; i >= 0; i--) seq[i] = cp[i] + seq[i+1];
+        int mx = max(pre[k-1], seq[n-k]);
+        for (int i = 0; i < k-1; i++) {
+            int pt = 0, st = 0;
+            pt += pre[i];
+            st += seq[n-k+i+1];
+            mx = max(mx, pt+st);
         }
-        sum = 0;
-        for (int i=n-1; i>=0; i--) {
-            sum += cardPoints[i];
-            cummulativeSumFromBehind[i] = sum;
-        }
-        
-        // Reversing is optional. I reversed it so that it would be easy
-        // to access sum of last (k-i) elements by just indexing at [k-i]
-        // Otherwise, I would have had to index it at [n-k+i] which would
-        // have made it difficult to read.
-        reverse(cummulativeSumFromBehind.begin(), cummulativeSumFromBehind.end());
-        
-        int answer = 0;
-        for(int i=0; i<=k; i++) {      
-            answer = max(answer, 
-                           cummulativeSumFromFront[i] // Sum of first 'i' cards.
-                         + cummulativeSumFromBehind[k-i]); // Sum of last 'k-i' cards.
-        }
-        return answer;
+        return mx;
     }
 };
