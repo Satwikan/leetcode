@@ -1,3 +1,4 @@
+[Discussion Post (created on 17/7/2022 at 11:58)](https://leetcode.com/problems/insert-into-a-binary-search-tree/discuss/2437773/Different-Solution-or-CPP-or-Pointer)  
 <h2>701. Insert into a Binary Search Tree</h2><h3>Medium</h3><hr><div><p>You are given the <code>root</code> node of a binary search tree (BST) and a <code>value</code> to insert into the tree. Return <em>the root node of the BST after the insertion</em>. It is <strong>guaranteed</strong> that the new value does not exist in the original BST.</p>
 
 <p><strong>Notice</strong>&nbsp;that there may exist&nbsp;multiple valid ways for the&nbsp;insertion, as long as the tree remains a BST after insertion. You can return <strong>any of them</strong>.</p>
