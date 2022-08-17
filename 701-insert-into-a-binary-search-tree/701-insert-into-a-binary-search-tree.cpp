@@ -11,14 +11,17 @@
  */
 class Solution {
 public:
-    TreeNode* insertIntoBST(TreeNode* root, int val) {
-        if(root == NULL){
-            return new TreeNode(val);
+    void search(TreeNode** root, int x) {
+        if (*root == NULL) {
+            *root =  new TreeNode(x);
+            return;
         }
-        if(root->val > val)
-            root->left = insertIntoBST(root->left,val);
-        else
-            root->right = insertIntoBST(root->right,val);
+        if ((*root)->val == x) return;
+        if ((*root)->val > x) search(&((*root)->left), x);
+        if ((*root)->val < x) search(&((*root)->right), x);
+    }
+    TreeNode* insertIntoBST(TreeNode* root, int val) {
+        search(&root, val);
         return root;
     }
 };
