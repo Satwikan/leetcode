@@ -7,7 +7,6 @@ class Solution(object):
                 if length == 0:
                     yield 0, 0
                     return
-
                 h, power = 0, 1
                 for i, x in enumerate(A):
                     h = (h + x * power) % MOD
